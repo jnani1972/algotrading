@@ -1,7 +1,5 @@
-name: ChatGPT NSE Cash Futures Backtest
+name: ChatGPT NSE Bmin >1pct Backtest
 on:
-  push:
-    branches: [chatgpt-nse-cash-futures-backtest-20260817]
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -11,15 +9,15 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Run NSE backtest
-        run: python3 chatgpt_backtest.py
+      - name: Run NSE Bmin >1pct backtest
+        run: python3 chatgpt_backtest_bmin1.py
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
-          name: nse-cash-futures-results
+          name: nse-bmin1-results
           path: |
-            nse_cash_futures_summary.csv
-            nse_cash_futures_trades.csv
-            nse_cash_futures_quality.csv
-            nse_cash_futures_aggregate.json
+            nse_bmin1_summary.csv
+            nse_bmin1_trades.csv
+            nse_bmin1_quality.csv
+            nse_bmin1_aggregate.json
           if-no-files-found: error
