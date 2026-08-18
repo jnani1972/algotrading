@@ -1,0 +1,23 @@
+name: ChatGPT NSE Cash Futures Backtest
+on:
+  push:
+    branches: [chatgpt-nse-cash-futures-backtest-20260817]
+  workflow_dispatch:
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run NSE backtest
+        run: python3 chatgpt_backtest.py
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: nse-cash-futures-results
+          path: |
+            nse_cash_futures_summary.csv
+            nse_cash_futures_trades.csv
+            nse_cash_futures_quality.csv
+            nse_cash_futures_aggregate.json
+          if-no-files-found: error
