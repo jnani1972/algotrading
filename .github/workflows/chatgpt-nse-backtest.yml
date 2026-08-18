@@ -2,6 +2,8 @@ name: ChatGPT NSE Cash Futures Backtest
 on:
   push:
     branches: [chatgpt-nse-cash-futures-backtest-20260817]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 jobs:
   backtest:
